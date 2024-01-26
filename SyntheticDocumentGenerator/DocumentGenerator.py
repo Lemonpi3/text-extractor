@@ -28,16 +28,16 @@ def generate_synthetic_document(min_x=600, min_y=800, max_x =1000, max_y=1600, m
         for j in range(vertical_sections):
             has_title = random.choice([True, False])
             if has_title:
-                start_y = j * section_height + margin[1] + TITLE_FONT_SIZE
-                end_y = (j + 1) * section_height 
+                start_y = j * section_height + margin[1] // 2 + TITLE_FONT_SIZE
+                end_y = (j + 1) * section_height - margin[1] // 2
 
                 draw_title(image, 
                            x0=margin[0], y0= j * section_height + margin[1], 
                            x1= random.randint(30,img_size[0]), y1= j * section_height +TITLE_FONT_SIZE,
                            color=debug_title_color)
             else:
-                start_y = j * section_height + margin[1]
-                end_y = (j + 1) * section_height 
+                start_y = j * section_height + margin[1] // 2
+                end_y = (j + 1) * section_height - margin[1] // 2
 
             horizontal_sections = random.randint(1, max_horizontal_sections)
             section_width = img_size[0] // horizontal_sections
@@ -66,7 +66,7 @@ def draw_title(image, x0, y0, x1, y1=TITLE_FONT_SIZE, color = (230, 40, 15)):
 def save_image(image, filename):
     fig, ax = plt.subplots(figsize=(image.shape[1] / 100, image.shape[0] / 100), dpi=100)
     ax.imshow(image)
-    ax.axis('off')
+    plt.axis('off')
     plt.savefig(DOCUMENT_OUTPUT_PATH + filename + '.png', bbox_inches='tight', pad_inches=0)
     plt.close()
 
