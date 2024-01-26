@@ -33,7 +33,7 @@ The output of the layout classifier would be a json with boundary box coordinate
 This component might include a rotation detection in case the file is flipped in a different direction.
 
 ### PostProcessing
-WIP
+WIP 
 
 # Dependencies
 
